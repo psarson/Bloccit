@@ -8,6 +8,7 @@ require "random_data"
      body:   RandomData.random_paragraph
    )
  end
+
  posts = Post.all
 
  # Create Comments
