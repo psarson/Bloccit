@@ -12,7 +12,7 @@ require "random_data"
 
  100.times do
    Comment.create!(
- 
+
      post: posts.sample,
      body: RandomData.random_paragraph
    )
