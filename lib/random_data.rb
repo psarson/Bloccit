@@ -1,4 +1,5 @@
 module RandomData
+
   def random_paragraph
     sentences = []
     rand(4..6).times do
