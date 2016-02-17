@@ -2,6 +2,15 @@ require "random_data"
 include RandomData
 
 15.times do
+  SponsoredPost.create!(
+     title:  RandomData.random_sentence,
+     body:  RandomData.random_sentence,
+     price: 666
+  )
+end
+sponsored_posts = SponsoredPost.all
+
+15.times do
    Topic.create!(
      name:         RandomData.random_sentence,
      description:  RandomData.random_paragraph
@@ -29,6 +38,7 @@ include RandomData
  end
 
  puts "Seed finished"
+ puts "#{SponsoredPost.count} sponsored posts created"
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
