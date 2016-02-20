@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
              format: { with: EMAIL_REGEX }
    has_secure_password
  end
+<<<<<<< HEAD
+=======
+
+>>>>>>> checkpoint-36-user_authentication
 end
