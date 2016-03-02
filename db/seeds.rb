@@ -43,7 +43,14 @@ include RandomData
    password: 'helloworld',
    role:     'admin'
  )
- 
+
+ moderator = User.create!(
+   name:     'Moderator User',
+   email:    'moderator@example.com',
+   password: 'helloworld',
+   role:     'moderator'
+ )
+
  member = User.create!(
    name:     'Member User',
    email:    'member@example.com',
