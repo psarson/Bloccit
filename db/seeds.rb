@@ -31,7 +31,7 @@ include RandomData
 
  100.times do
    Comment.create!(
-
+     user: users.sample,
      post: posts.sample,
      body: RandomData.random_paragraph
    )
@@ -43,7 +43,7 @@ include RandomData
    password: 'helloworld',
    role:     'admin'
  )
- 
+
  member = User.create!(
    name:     'Member User',
    email:    'member@example.com',

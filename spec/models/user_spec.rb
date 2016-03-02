@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
    it { is_expected.to have_many(:posts) }
+   it { is_expected.to have_many(:comments) }
    it { is_expected.to validate_presence_of(:name) }
    it { is_expected.to validate_length_of(:name).is_at_least(1) }
 
@@ -61,10 +62,6 @@ describe "roles" do
        it "returns false for #member?" do
          expect(user.member?).to be_falsey
        end
-
-       it "returns false for #moderator?" do
-         expect(user.moderator).to be_falsey
-        end
 
        it "returns true for #admin?" do
          expect(user.admin?).to be_truthy
