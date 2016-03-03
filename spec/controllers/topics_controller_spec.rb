@@ -326,7 +326,7 @@ RSpec.describe TopicsController, type: :controller do
      describe "GET edit" do
        it "returns http redirect" do
          get :edit, {id: my_topic.id}
-         expect(response).to redirect_to(new_session_path)
+         expect(response).to redirect_to(topics_path)
        end
      end
 
