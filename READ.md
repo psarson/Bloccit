@@ -25,6 +25,6 @@ Things you may want to cover:
 
 * ...
 
-
+* Also, if you've found you've done more than half the checkpoint on the master branch - feel free to include some non-sense here.  
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
