@@ -7,5 +7,5 @@ FactoryGirl.define do
      topic
      user
      rank 0.0
-   end
+   end 
  end
