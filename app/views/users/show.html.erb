@@ -26,6 +26,7 @@
 <% else %>
   <p> <%= "#{@user.name} has not submitted any posts or content yet!" %></p>
 <% end %>
-
-  <h2>Favorite Posts</h2>
-  <%= render partial: "favorites/list" %>
+  <h2>Favorites</h2>
+<% @user.favorites.each do |favorite| %>
+   <%= render partial: 'users/favorite', locals: { post: favorite.post } %>
+<% end %>
