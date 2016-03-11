@@ -9,6 +9,7 @@ RSpec.describe TopicsController, type: :controller do
 
   context "guest" do
      describe "GET index" do
+
        it "returns http success" do
          get :index
          expect(response).to have_http_status(:success)
@@ -22,7 +23,7 @@ RSpec.describe TopicsController, type: :controller do
        it "does not include private topics in @topics" do
          get :index
          expect(assigns(:topics)).not_to include(my_private_topic)
-       end
+       end 
      end
 
      describe "GET show" do
