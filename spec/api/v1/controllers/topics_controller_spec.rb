@@ -66,6 +66,7 @@ require 'rails_helper'
        my_user.admin!
        controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
        @new_topic = build(:topic)
+       @new_post = build(:post)
      end
 
      describe "PUT update" do
@@ -100,6 +101,24 @@ require 'rails_helper'
          hashed_json = JSON.parse(response.body)
          expect(hashed_json["name"]).to eq(@new_topic.name)
          expect(hashed_json["description"]).to eq(@new_topic.description)
+       end
+     end
+
+     describe "POST create" do
+       before { post :create_post, id: my_topic.id, post: {title: @new_post.title, body: @new_post.body} }
+
+       it "returns http success" do
+         expect(response).to have_http_status(:success)
+       end
+
+       it "returns json content type" do
+         expect(response.content_type).to eq 'application/json'
+       end
+
+       it "creates a topic with the correct attributes" do
+         hashed_json = JSON.parse(response.body)
+         expect(hashed_json["title"]).to eq(@new_post.title)
+         expect(hashed_json["body"]).to eq(@new_post.body)
        end
      end
 
