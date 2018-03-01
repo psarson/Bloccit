@@ -1,6 +1,7 @@
+require 'random_data'
 include RandomData
 
-FactoryGirl.define do
+FactoryBot.define do
    pw = RandomData.random_sentence
    factory :user do
      name RandomData.random_name
