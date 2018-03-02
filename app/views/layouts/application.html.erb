@@ -1,48 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bloccit</title>
+  <title>Bloccit</title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <ul>
-    <li><%= link_to "Bloccit", root_path %></li>
-    <li><%= link_to "Topics", topics_path %></li>
-    <li><%= link_to "About", about_path %></li>
-      <% if current_user %>
-       <%= image_tag current_user.avatar_url(48), class: "gravatar" %>
-        <div class="pull-right">
-          <%= link_to current_user.name, user_path(current_user) %> <br/> <%= link_to "Sign Out", session_path(current_user), method: :delete %>
+    <nav class="navbar navbar-header navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> 
+      </button>  
+      <h1 class"navbar-brand mb-0"><%= link_to "Bloccit", root_path %></h1>
+      
+      <div class="collapse navbar-collapse flex-column ml-lg-0 ml-3" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <span class="nav-link"><%= link_to "Topics", topics_path %><span class="sr-only">(current)</span></span>
+          </li> 
+          <li class="nav-item">
+            <span class="nav-link"><%= link_to "About", about_path %></span>
+          </li> 
+        </ul> 
+      </div>  
+      <div class="navbar navbar-right">
+        <div class="navbar-nav my-2 my-lg-0"> 
+          <% if current_user %>  
+            <li class="nav-item">
+              <span class="nav-link"><%= link_to current_user.name, user_path(current_user) %></span>
+            </li>   
+            <li>
+              <span class="nav-link"><%= link_to "Sign Out", session_path(current_user), method: :delete %></span> 
+            </li>
+            <li class="nav-item">
+              <span class="icon"> <%= image_tag current_user.avatar_url(48), class: "gravatar" %> </span>
+            </li>  
+          <% else %>
+            <span class="nav-link"><li class="nav-item"> <%= link_to "Sign In", new_session_path %> </li></span> 
+            <span class="nav-link"><li class="nav-item"> <%= link_to "Sign Up", new_user_path %> </li></span>
+          <% end %>
+      </div> 
+    </div> 
+   </nav>     
+        
+    <nav class="flash">
+      <% if flash[:notice] %>
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= flash[:notice] %>
+        </div>
+      <% elsif flash.now[:alert] %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:alert] %>
           </div>
-         <% else %>
-           <%= link_to "Sign In", new_session_path %> or
-           <%= link_to "Sign Up", new_user_path %>
-      <% end %>
-</ul>
- <div class="flash">
-   <% if flash[:notice] %>
-     <div class="alert alert-success">
-       <button type="button" class="close" data-dismiss="alert">&times;</button>
-       <%= flash[:notice] %>
-     </div>
-   <% elsif flash.now[:alert] %>
-       <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-         <%= flash.now[:alert] %>
-       </div>
-   <% elsif flash[:alert] %>
-       <div class="alert alert-warning">
-         <button type="button" class="close" data-dismiss="alert">&times;</button>
-         <%= flash[:alert] %>
-       </div>
-   <% end %> 
- </div>
+      <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+      <% end %>   
+    </nav>
+    
 
 
-<%= yield %>
+    <%= yield %>
 
 </body>
 </html>
